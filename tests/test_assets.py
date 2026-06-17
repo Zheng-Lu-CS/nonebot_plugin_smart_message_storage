@@ -5,7 +5,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from nonebot_plugin_message_storage.services.images import maybe_compress_jpeg
+from nonebot_plugin_smart_message_storage.services.images import maybe_compress_jpeg
 
 ASSET_DIR = Path(__file__).resolve().parent / "assets"
 IMAGE_SUFFIXES = {".jpg", ".jpeg", ".png", ".gif"}

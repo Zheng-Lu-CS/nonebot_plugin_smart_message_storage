@@ -7,8 +7,8 @@ from pathlib import Path
 
 import pytest
 
-from nonebot_plugin_message_storage.services.images import maybe_compress_jpeg
-from nonebot_plugin_message_storage.vision import summarize_images
+from nonebot_plugin_smart_message_storage.services.images import maybe_compress_jpeg
+from nonebot_plugin_smart_message_storage.vision import summarize_images
 
 ASSET_DIR = Path(__file__).resolve().parent / "assets"
 RUNTIME_DIR = Path(__file__).resolve().parent / ".runtime" / "ai_assets"

@@ -3,7 +3,7 @@
 
 import pytest
 
-from nonebot_plugin_message_storage.vision import VisionError, parse_ai_json
+from nonebot_plugin_smart_message_storage.vision import VisionError, parse_ai_json
 
 
 def test_parse_ai_json_plain_object():

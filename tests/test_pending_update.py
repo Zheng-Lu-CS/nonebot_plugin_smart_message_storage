@@ -6,12 +6,12 @@ from datetime import datetime
 import asyncio
 import json
 
-from nonebot_plugin_message_storage.config import config
-from nonebot_plugin_message_storage.constants import PENDING_FILE
-from nonebot_plugin_message_storage.db import SessionLocal, init_db
-from nonebot_plugin_message_storage.models import GroupMessage
-from nonebot_plugin_message_storage.services.context import after_context_chars
-from nonebot_plugin_message_storage.services.pending import _has_enough_after_context, _update_messages, build_timeline, maybe_flush_batch_pending
+from nonebot_plugin_smart_message_storage.config import config
+from nonebot_plugin_smart_message_storage.constants import PENDING_FILE
+from nonebot_plugin_smart_message_storage.db import SessionLocal, init_db
+from nonebot_plugin_smart_message_storage.models import GroupMessage
+from nonebot_plugin_smart_message_storage.services.context import after_context_chars
+from nonebot_plugin_smart_message_storage.services.pending import _has_enough_after_context, _update_messages, build_timeline, maybe_flush_batch_pending
 
 
 def test_update_messages_replaces_multiple_images_by_position():
@@ -298,7 +298,7 @@ def test_batch_flush_only_selects_tasks_with_enough_after_context(monkeypatch):
             captured.update(kwargs)
             return len(kwargs["task_ids"])
 
-        monkeypatch.setattr("nonebot_plugin_message_storage.services.pending.flush_pending", fake_flush_pending)
+        monkeypatch.setattr("nonebot_plugin_smart_message_storage.services.pending.flush_pending", fake_flush_pending)
 
         count = asyncio.run(maybe_flush_batch_pending())
 

@@ -3,8 +3,8 @@
 
 from nonebot.adapters.onebot.v11 import Message, MessageSegment
 
-from nonebot_plugin_message_storage.services.message_utils import image_segments, image_summary_segment
-from nonebot_plugin_message_storage.services.pending import _replace_one_image
+from nonebot_plugin_smart_message_storage.services.message_utils import image_segments, image_summary_segment
+from nonebot_plugin_smart_message_storage.services.pending import _replace_one_image
 
 
 def test_image_segments_are_numbered_by_image_order():

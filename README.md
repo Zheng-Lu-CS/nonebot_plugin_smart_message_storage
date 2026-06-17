@@ -2,20 +2,19 @@
     <a href="https://v2.nonebot.dev/store">
     <img src="https://raw.githubusercontent.com/fllesser/nonebot-plugin-template/refs/heads/resource/.docs/NoneBotPlugin.svg" width="310" alt="logo"></a>
 
-## ✨ 消息存储 ✨
+## ✨ 智能消息存储 ✨
 
-[![LICENSE](https://img.shields.io/github/license/WhyPilotXia/nonebot_plugin_message_storage.svg)](./LICENSE)[![pypi](https://img.shields.io/pypi/v/nonebot-plugin-message-storage.svg)](https://pypi.python.org/pypi/nonebot-plugin-message-storage)[![python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org)[![NoneBot](https://img.shields.io/badge/NoneBot-2.x-green.svg)](https://github.com/nonebot/nonebot2)
+[![LICENSE](https://img.shields.io/github/license/WhyPilotXia/nonebot_plugin_smart_message_storage.svg)](./LICENSE)[![pypi](https://img.shields.io/pypi/v/nonebot-plugin-smart-message-storage.svg)](https://pypi.python.org/pypi/nonebot-plugin-smart-message-storage)[![python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org)[![NoneBot](https://img.shields.io/badge/NoneBot-2.x-green.svg)](https://github.com/nonebot/nonebot2)
 
 ## 📖 介绍
 
-一个用于记录 QQ 群聊与私聊消息的 NoneBot2 插件，支持消息检索、常见 notice 事件入库，并可选启用 AI 图片识别，将图片消息总结为可搜索文本。
+支持群聊/私聊消息归档、检索和 AI 图片理解总结的 NoneBot2 插件。
 
 功能特色：
 
-- **消息存储**：记录群聊与私聊消息，私聊使用 `group_id=-1` 存入同一张消息表。
-- **事件记录**：支持戳一戳、加群、退群/被踢、群撤回、私聊撤回等事件写入消息表。
-- **消息检索**：使用 `/查消息` 在当前会话或指定群中搜索历史消息。
-- **AI 识图**：遇到图片消息时可缓存图片并批量识别，识别成功后把原图片 CQ 码回写为 `[image:{summary:"",tip:""}]`。
+- **基础功能**：群聊/私聊消息存储，私聊使用 `group_id=-1` 存入同一张消息表，并支持 `/查消息` 检索。
+- **增值服务**：撤回、戳一戳、加群、退群/被踢等信息存储。
+- **核心技术**：AI 带上下文识图理解存储，识别成功后把原图片 CQ 码回写为 `[image:{summary:"",tip:""}]`。
 - **上下文感知**：识图时会带上图片前后方的聊天上下文，已识别图片会使用数据库中的总结版本。
 - **批量缓存**：待识别图片写入 `pending_images.json`，累计 5 张、等待 30 分钟或收到命令时提交。
 - **本地缓存**：使用 `nonebot-plugin-localstore` 管理缓存目录，成功或失败后自动清理图片缓存。
@@ -27,7 +26,7 @@
 在 nonebot2 项目的根目录下打开命令行，输入以下指令：
 
 ```bash
-nb plugin install nonebot-plugin-message-storage
+nb plugin install nonebot-plugin-smart-message-storage
 ```
 
 ### 使用包管理器安装
@@ -37,27 +36,27 @@ nb plugin install nonebot-plugin-message-storage
 #### pdm
 
 ```bash
-pdm add nonebot-plugin-message-storage
+pdm add nonebot-plugin-smart-message-storage
 ```
 
 #### poetry
 
 ```bash
-poetry add nonebot-plugin-message-storage
+poetry add nonebot-plugin-smart-message-storage
 ```
 
 然后打开 nonebot2 项目根目录下的 `pyproject.toml` 文件，在 `[tool.nonebot]` 部分追加写入：
 
 ```toml
-plugins = ["nonebot_plugin_message_storage"]
+plugins = ["nonebot_plugin_smart_message_storage"]
 ```
 
 ### 本地插件安装
 
-如果直接使用本仓库源码，可以将 `nonebot_plugin_message_storage` 文件夹放入项目插件目录，并在 `pyproject.toml` 中加载：
+如果直接使用本仓库源码，可以将 `nonebot_plugin_smart_message_storage` 文件夹放入项目插件目录，并在 `pyproject.toml` 中加载：
 
 ```toml
-plugins = ["nonebot_plugin_message_storage"]
+plugins = ["nonebot_plugin_smart_message_storage"]
 ```
 
 ## ⚙️ 配置
@@ -189,7 +188,7 @@ IMAGE_CONTEXT_AFTER_CHARS=100
 ## 🗂️ 项目结构
 
 ```text
-nonebot_plugin_message_storage/
+nonebot_plugin_smart_message_storage/
 ├── __init__.py          # 插件入口，声明元数据，初始化数据库，注册启动任务并加载 handlers
 ├── config.py            # 插件配置模型，读取数据库地址、AI 接口、批量识别数量和超时时间
 ├── constants.py         # 定义 localstore 数据目录、图片缓存目录和 pending_images.json 路径

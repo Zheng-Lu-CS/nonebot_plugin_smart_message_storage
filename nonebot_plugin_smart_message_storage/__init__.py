@@ -12,8 +12,8 @@ from .db import init_db
 from .services.pending import start_stale_flush_loop
 
 __plugin_meta__ = PluginMetadata(
-    name="nonebot-plugin-message-storage",
-    description="OneBot v11 QQ 消息存储插件，支持群聊/私聊消息、notice 事件入库和图片 AI 总结回写。",
+    name="智能消息存储",
+    description="支持群聊/私聊消息归档、检索和 AI 图片理解总结的 NoneBot2 插件。",
     usage=(
         "/查消息 关键词\n"
         "/查消息 群号 关键词\n"
@@ -34,7 +34,7 @@ driver = get_driver()
 @driver.on_startup
 async def _startup() -> None:
     start_stale_flush_loop()
-    logger.debug("Message storage plugin started.")
+    logger.debug("Smart message storage plugin started.")
 
 
 from . import handlers as handlers
